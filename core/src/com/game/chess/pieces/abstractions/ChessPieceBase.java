@@ -1,30 +1,28 @@
 package com.game.chess.pieces.abstractions;
 
-import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.graphics.g3d.Model;
-import com.badlogic.gdx.graphics.g3d.ModelInstance;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.game.chess.AutoloadSingleton;
-import com.game.chess.components.implementations.Position3DComponent;
-import com.game.chess.components.implementations.Velocity3DComponent;
+import com.game.chess.components.implementations.Position2DComponent;
+import com.game.chess.components.implementations.Velocity2DComponent;
 
-public abstract class ChessPieceBase extends Entity {
+public abstract class ChessPieceBase extends com.badlogic.ashley.core.Entity {
     public ChessPieceBase() {
         super();
-        this.add(new Position3DComponent());
-        this.add(new Velocity3DComponent());
+        this.add(new Position2DComponent());
+        this.add(new Velocity2DComponent());
     }
 
-    protected ModelInstance model3DInstance;
+    protected Sprite sprite;
 
-    public ModelInstance getModel3DInstance() {
-        return model3DInstance;
+    public Sprite getSprite() {
+        return sprite;
     }
 
-    public Position3DComponent getPosition3DComponent() {
-        return AutoloadSingleton.position3DComponentMapper.get(this);
+    public Position2DComponent getPosition2DComponent() {
+        return AutoloadSingleton.position2DComponentMapper.get(this);
     }
 
-    public Velocity3DComponent getVelocity3DComponent() {
-        return AutoloadSingleton.velocity3DComponentMapper.get(this);
+    public Velocity2DComponent getVelocity2DComponent() {
+        return AutoloadSingleton.velocity2DComponentMapper.get(this);
     }
 }
