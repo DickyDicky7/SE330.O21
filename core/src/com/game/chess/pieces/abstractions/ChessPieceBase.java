@@ -35,8 +35,8 @@ public abstract class ChessPieceBase extends com.game.chess.Entity2DBase {
     public void update() {
           super.update();
         if (sprite != null) {
-            float x = chessBoardFile.number * sprite.getWidth() + MainAutoload.offsetX;
-            float y = chessBoardRank.number * sprite.getWidth() + MainAutoload.offsetY;
+            float x = chessBoardFile.number * MainAutoload.CHESS_BOARD_CELL_W + MainAutoload.CHESS_BOARD_PADDING_X;
+            float y = chessBoardRank.number * MainAutoload.CHESS_BOARD_CELL_H + MainAutoload.CHESS_BOARD_PADDING_Y;
             sprite.setPosition( x , y );
         }
     }

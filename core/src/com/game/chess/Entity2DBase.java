@@ -39,10 +39,10 @@ public abstract class Entity2DBase {
     //@formatter:off
     public void render (SpriteBatch spriteBatch) {
         if (sprite != null) {
-            float x = sprite.getX() * MainAutoload.scale;
-            float y = sprite.getY() * MainAutoload.scale;
-            float w = sprite.getWidth() * MainAutoload.scale;
-            float h = sprite.getWidth() * MainAutoload.scale;
+            float x = sprite.getX() * MainAutoload.SCALE;
+            float y = sprite.getY() * MainAutoload.SCALE;
+            float w = sprite.getWidth () * MainAutoload.SCALE;
+            float h = sprite.getHeight() * MainAutoload.SCALE;
             spriteBatch.draw(
                     sprite,
                     x,

@@ -8,9 +8,11 @@ public final class MainAutoload {
 
     }
 
-    public static final float scale = 2.0f;
-    public static final float offsetX = 16.0f;
-    public static final float offsetY = 16.0f;
+    public static final int SCALE = 2;
+    public static final float CHESS_BOARD_CELL_W = 32.0f;
+    public static final float CHESS_BOARD_CELL_H = 32.0f;
+    public static final float CHESS_BOARD_PADDING_X = 16.0f;
+    public static final float CHESS_BOARD_PADDING_Y = 16.0f;
 
     public static final Texture textureChessBoard = new Texture(Gdx.files.internal("FREE - ChessSet/FREE - ChessSet/Classic/Board/Board - classic.png"));
 

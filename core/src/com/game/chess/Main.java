@@ -16,9 +16,14 @@ public class Main extends com.badlogic.gdx.ApplicationAdapter {
         //@formatter:on
     }
 
+    //@formatter:off
     @Override
     public void render() {
-        Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        Gdx.gl.glViewport(
+                0,
+                0,
+                Gdx.graphics.getWidth (),
+                Gdx.graphics.getHeight());
         Gdx.gl.glClear(com.badlogic.gdx.graphics.GL32
                 .GL_COLOR_BUFFER_BIT
                 | com.badlogic.gdx.graphics.GL32
@@ -28,12 +33,14 @@ public class Main extends com.badlogic.gdx.ApplicationAdapter {
 
         chessBoard.handle();
         chessBoard.update();
-        //@formatter:off
         spriteBatch.begin();chessBoard.render(spriteBatch);spriteBatch.end();
-        //@formatter:on
 
-//        System.out.println(Gdx.input.getX() + " " + Gdx.input.getY());
+        System.out.println(
+                chessBoard.getChessBoardFileBasedOnMousePositionX()
+        + " " +
+                chessBoard.getChessBoardRankBasedOnMousePositionY());
     }
+    //@formatter:on
 
     @Override
     public void dispose() {

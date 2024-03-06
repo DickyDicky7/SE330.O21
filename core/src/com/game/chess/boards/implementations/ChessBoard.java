@@ -1,7 +1,9 @@
 package com.game.chess.boards.implementations;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Null;
 import com.game.chess.Entity2DBase;
 import com.game.chess.MainAutoload;
 import com.game.chess.factories$.abstractions.ChessPiecesFactory;
@@ -81,6 +83,32 @@ public class ChessBoard extends Entity2DBase {
                   chessPiece.render(spriteBatch);
               }
           }
+    }
+
+    @Null
+    public   ChessBoardFile getChessBoardFileBasedOnMousePositionX()  {
+        for (ChessBoardFile chessBoardFile : ChessBoardFile.values()) {
+            float mousePositionX = Gdx.input.getX() +sprite.getX();
+            float L =  chessBoardFile.number      * MainAutoload.CHESS_BOARD_CELL_W * MainAutoload.SCALE + MainAutoload.CHESS_BOARD_PADDING_X * MainAutoload.SCALE;
+            float R = (chessBoardFile.number + 1) * MainAutoload.CHESS_BOARD_CELL_W * MainAutoload.SCALE + MainAutoload.CHESS_BOARD_PADDING_X * MainAutoload.SCALE;
+            if   (mousePositionX > L && mousePositionX < R) {
+                return chessBoardFile;
+            }
+        }
+        return null;
+    }
+
+    @Null
+    public   ChessBoardRank getChessBoardRankBasedOnMousePositionY()  {
+        for (ChessBoardRank chessBoardRank : ChessBoardRank.values()) {
+            float mousePositionY = Gdx.graphics.getHeight() -Gdx.input.getY() + sprite.getY();
+            float B =  chessBoardRank.number      * MainAutoload.CHESS_BOARD_CELL_H * MainAutoload.SCALE + MainAutoload.CHESS_BOARD_PADDING_Y * MainAutoload.SCALE;
+            float T = (chessBoardRank.number + 1) * MainAutoload.CHESS_BOARD_CELL_H * MainAutoload.SCALE + MainAutoload.CHESS_BOARD_PADDING_Y * MainAutoload.SCALE;
+            if   (mousePositionY > B && mousePositionY < T) {
+                return chessBoardRank;
+            }
+        }
+        return null;
     }
     //@formatter:on
 }
