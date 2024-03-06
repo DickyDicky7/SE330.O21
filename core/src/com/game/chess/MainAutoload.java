@@ -8,7 +8,9 @@ public final class MainAutoload {
 
     }
 
-    public static final Texture textureChessBoard = new Texture(Gdx.files.internal("chess-board.png"));
+    public static int scale = 4;
+
+    public static final Texture textureChessBoard = new Texture(Gdx.files.internal("chess-board-new.png"));
 
     public static final Texture textureChessPieceBlackQueen = new Texture(Gdx.files.internal("black-queen.png"));
     public static final Texture textureChessPieceBlackKing = new Texture(Gdx.files.internal("black-king.png"));

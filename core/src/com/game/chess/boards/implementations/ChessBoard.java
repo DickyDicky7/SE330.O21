@@ -14,21 +14,26 @@ import java.util.EnumMap;
 public class ChessBoard extends Entity2DBase {
     private final EnumMap<ChessBoardRank, EnumMap<ChessBoardFile, ChessPieceBase>> _grid_;
 
-
     public ChessBoard() {
         super();
         this.sprite = new Sprite(MainAutoload.textureChessBoard);
         this._grid_ = new EnumMap<
                 >(ChessBoardRank.class);
-        init();
+        this.init();
+        this.sprite.setScale
+                (MainAutoload.scale);
+        float temp =
+                (MainAutoload.scale - 1) * 0.5f;
+        this.sprite.setPosition(this.sprite.getWidth() * temp, this.sprite.getHeight() * temp);
     }
 
     private void init() {
-        init_Board(_grid_);
-        initSet1(_grid_, new WhiteChessPiecesFactory(), ChessBoardRank.R1);
-        initSet2(_grid_, new WhiteChessPiecesFactory(), ChessBoardRank.R2);
-        initSet2(_grid_, new BlackChessPiecesFactory(), ChessBoardRank.R7);
-        initSet1(_grid_, new BlackChessPiecesFactory(), ChessBoardRank.R8);
+        this.init_Board(this._grid_);
+        this.initSet1(this._grid_, new WhiteChessPiecesFactory(), ChessBoardRank.R1);
+        this.initSet2(this._grid_, new WhiteChessPiecesFactory(), ChessBoardRank.R2);
+        this.initSet2(this._grid_, new BlackChessPiecesFactory(), ChessBoardRank.R7);
+        this.initSet1(this._grid_, new BlackChessPiecesFactory(), ChessBoardRank.R8);
+        this.initTransform(this._grid_);
     }
 
     //@formatter:off
@@ -42,8 +47,7 @@ public class ChessBoard extends Entity2DBase {
     }
     //@formatter:on
 
-    private void initSet1
-            (EnumMap<ChessBoardRank, EnumMap<ChessBoardFile, ChessPieceBase>> grid, ChessPiecesFactory chessPiecesFactory, ChessBoardRank chessBoardRank) {
+    private void initSet1(EnumMap<ChessBoardRank, EnumMap<ChessBoardFile, ChessPieceBase>> grid, ChessPiecesFactory chessPiecesFactory, ChessBoardRank chessBoardRank) {
         grid.get(chessBoardRank).put(ChessBoardFile.CD, chessPiecesFactory.createQueen());
         grid.get(chessBoardRank).put(ChessBoardFile.CE, chessPiecesFactory.createKing());
         grid.get(chessBoardRank).put(ChessBoardFile.CA, chessPiecesFactory.createRook());
@@ -54,8 +58,7 @@ public class ChessBoard extends Entity2DBase {
         grid.get(chessBoardRank).put(ChessBoardFile.CF, chessPiecesFactory.createBishop());
     }
 
-    private void initSet2
-            (EnumMap<ChessBoardRank, EnumMap<ChessBoardFile, ChessPieceBase>> grid, ChessPiecesFactory chessPiecesFactory, ChessBoardRank chessBoardRank) {
+    private void initSet2(EnumMap<ChessBoardRank, EnumMap<ChessBoardFile, ChessPieceBase>> grid, ChessPiecesFactory chessPiecesFactory, ChessBoardRank chessBoardRank) {
         grid.get(chessBoardRank).put(ChessBoardFile.CA, chessPiecesFactory.createPawn());
         grid.get(chessBoardRank).put(ChessBoardFile.CB, chessPiecesFactory.createPawn());
         grid.get(chessBoardRank).put(ChessBoardFile.CC, chessPiecesFactory.createPawn());
@@ -66,9 +69,37 @@ public class ChessBoard extends Entity2DBase {
         grid.get(chessBoardRank).put(ChessBoardFile.CH, chessPiecesFactory.createPawn());
     }
 
-    public void testRender(SpriteBatch spriteBatch) {
-        sprite.setScale(4);
-        sprite.setPosition(sprite.getWidth() * 1.5f, sprite.getHeight() * 1.5f);
-        sprite.draw(spriteBatch);
+    //@formatter:off
+    private void initTransform(EnumMap<ChessBoardRank, EnumMap<ChessBoardFile, ChessPieceBase>> grid) {
+            for (ChessBoardRank chessBoardRank : ChessBoardRank.values()) {
+            for (ChessBoardFile chessBoardFile : ChessBoardFile.values()) {
+                ChessPieceBase chessPiece = grid.get(chessBoardRank).get(chessBoardFile);
+                if (chessPiece != null) {
+                    chessPiece.getSprite().setScale (MainAutoload.scale);
+                    chessPiece.getSprite().setOrigin(
+                            - chessPiece.getSprite().getWidth () / 2 - 1.5f,
+                            - chessPiece.getSprite().getHeight() / 2 + 4);
+                    float x = chessBoardFile.number * chessPiece.getSprite().getWidth() * chessPiece.getSprite().getScaleX();
+                    float y = chessBoardRank.number * chessPiece.getSprite().getWidth() * chessPiece.getSprite().getScaleY();
+                    chessPiece.getSprite().setPosition( x , y );
+                }
+            }
+        }
     }
+
+    @Override
+    public void render(SpriteBatch spriteBatch) {
+        this.sprite.draw(spriteBatch);
+            for (int k1 = ChessBoardRank.values().length - 1; k1 >= 0; --k1) {
+            for (int k2 = ChessBoardFile.values().length - 1; k2 >= 0; --k2) {
+                ChessBoardRank chessBoardRank = ChessBoardRank.values()[k1];
+                ChessBoardFile chessBoardFile = ChessBoardFile.values()[k2];
+                ChessPieceBase chessPiece = this._grid_.get(chessBoardRank).get(chessBoardFile);
+                if (chessPiece != null) {
+                    chessPiece.render(spriteBatch);
+                }
+            }
+        }
+    }
+    //@formatter:on
 }

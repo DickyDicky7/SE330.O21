@@ -7,13 +7,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.game.chess.boards.implementations.ChessBoard;
 
 public class Main extends ApplicationAdapter {
-    private ChessBoard chessBoard;
-    private SpriteBatch spriteBatch;
+    //@formatter:off
+    private ChessBoard chessBoard;private SpriteBatch spriteBatch;
+    //@formatter:on
 
     @Override
     public void create() {
-        chessBoard = new ChessBoard();
-        spriteBatch = new SpriteBatch();
+        //@formatter:off
+        chessBoard = new ChessBoard();spriteBatch = new SpriteBatch();
+        //@formatter:on
     }
 
     @Override
@@ -26,11 +28,9 @@ public class Main extends ApplicationAdapter {
                 | GL20
                 .GL_COVERAGE_BUFFER_BIT_NV);
 
-
-        spriteBatch.begin();
-        chessBoard.testRender(spriteBatch);
-        spriteBatch.end();
-
+        //@formatter:off
+        spriteBatch.begin();chessBoard.render(spriteBatch);spriteBatch.end();
+        //@formatter:on
     }
 
     @Override

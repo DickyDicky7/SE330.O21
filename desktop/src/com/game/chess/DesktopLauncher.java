@@ -7,7 +7,7 @@ public class DesktopLauncher {
     public static void main(String[] arg) {
         Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
         config.setResizable(false);
-        config.setWindowedMode(568, 568);
+        config.setWindowedMode(1000, 650);
         config.setForegroundFPS(60);
         config.setTitle("chess");
         config.setBackBufferConfig(8, 8, 8, 8, 16, 0, 4);
