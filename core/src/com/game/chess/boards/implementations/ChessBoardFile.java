@@ -1,6 +1,6 @@
 package com.game.chess.boards.implementations;
 
-public enum ChessBoardCol {
+public enum ChessBoardFile {
     CA(0),
     CB(1),
     CC(2),
@@ -12,7 +12,7 @@ public enum ChessBoardCol {
 
     public final int number;
 
-    ChessBoardCol(int number) {
+    ChessBoardFile(int number) {
         this.number = number;
     }
 }

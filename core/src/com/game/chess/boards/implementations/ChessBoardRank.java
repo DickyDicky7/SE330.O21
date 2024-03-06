@@ -1,6 +1,6 @@
 package com.game.chess.boards.implementations;
 
-public enum ChessBoardRow {
+public enum ChessBoardRank {
     R1(0),
     R2(1),
     R3(2),
@@ -12,7 +12,7 @@ public enum ChessBoardRow {
 
     public final int number;
 
-    ChessBoardRow(int number) {
+    ChessBoardRank(int number) {
         this.number = number;
     }
 }
