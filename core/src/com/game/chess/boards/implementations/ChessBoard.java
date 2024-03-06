@@ -60,11 +60,9 @@ public class ChessBoard extends Entity2DBase {
     public void update() {
           super.update() ;
           if (sprite != null) {
-              sprite.setScale(MainAutoload.scale);
-              float temp  =  (MainAutoload.scale - 1.0f) * 0.5f;
-              sprite.setPosition(
-                      sprite.getWidth () * temp,
-                      sprite.getHeight() * temp);
+              float x = 0.0f;
+              float y = 0.0f;
+              sprite.setPosition( x , y );
           }
           for (ChessPieceBase chessPiece : chessPieces) {
               if (chessPiece != null) {

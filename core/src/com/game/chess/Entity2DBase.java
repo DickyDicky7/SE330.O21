@@ -39,7 +39,16 @@ public abstract class Entity2DBase {
     //@formatter:off
     public void render (SpriteBatch spriteBatch) {
         if (sprite != null) {
-            sprite.draw(spriteBatch);
+            float x = sprite.getX() * MainAutoload.scale;
+            float y = sprite.getY() * MainAutoload.scale;
+            float w = sprite.getWidth() * MainAutoload.scale;
+            float h = sprite.getWidth() * MainAutoload.scale;
+            spriteBatch.draw(
+                    sprite,
+                    x,
+                    y,
+                    w,
+                    h);
         }
     }
 }
