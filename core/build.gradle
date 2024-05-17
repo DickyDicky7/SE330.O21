@@ -1,0 +1,13 @@
+//@formatter:off
+
+sourceCompatibility = 17
+dependencies {
+        implementation "org.testng:testng:7.10.1"
+        implementation "junit:junit:4.12"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.10.2"
+}
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+eclipse   .project   .name   = appName + "-core"
